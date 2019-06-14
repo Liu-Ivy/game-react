@@ -1,0 +1,21 @@
+.home {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.big-img {
+  width:200px;
+  height:250px;
+}
+
+.small-img {
+  width:100px;
+  height:150px;
+}
+ .list-img {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: auto;
+ }

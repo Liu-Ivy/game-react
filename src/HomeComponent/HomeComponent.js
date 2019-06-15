@@ -3,6 +3,7 @@ import DisplayComponent from './DisplayComponent/DisplayComponent';
 import ButtonComponent from './ButtonComponent/ButtonComponent';
 import axios from 'axios';
 import './HomeComponent.css';
+import SearchComponent from './SearchComponent/SearchComponent';
 
 
 
@@ -12,7 +13,7 @@ class HomeComponent extends Component {
   state = {
     gif: { },
     list: [], 
-    
+    newInput: ''
   }
 
   handleClick = () => {
@@ -36,6 +37,10 @@ class HomeComponent extends Component {
   // componentWillReceiveProps() {
   //   console.log('componentWillReceiveProps')
   // }
+  handleSearchBar = (input)=>{
+    console.log('input', input)
+    this.setState({newInput:input})
+  }
   render() {
     const newList = this.state.list.filter((gif) => {
         return gif !== this.state.gif  
@@ -46,6 +51,7 @@ class HomeComponent extends Component {
       <div className="home">
           <DisplayComponent divClass="big-img" displayGif={this.state.gif} />
           <ButtonComponent handleClick={() => this.handleClick()} />
+          <SearchComponent searchInput={this.handleSearchBar}/>
           <div className="list-img"> 
           {newList.map((item,index) => {
             return <DisplayComponent key={index} divClass="small-img" displayGif={item} />

@@ -22,7 +22,7 @@ class HomeComponent extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
+    // console.log('componentDidMount')
     axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=cats`).then((response) => {
       console.log('response', response)
       const { data } = response.data;
@@ -31,8 +31,11 @@ class HomeComponent extends Component {
   }
   
   handleSearchBar = (input)=>{
-    console.log('input', input)
-    this.setState({newInput:input})
+    // console.log('input', input)
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${this.state.newInput}`)
+    .then((response)=>{
+      this.setState({newInput:input})
+    })  
   }
 
   // handleTermChange = (term) => {

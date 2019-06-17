@@ -10,12 +10,17 @@ class SearchComponent extends Component {
     this.props.searchInput(newInput);
     this.setState({ inputSearch: event.target.value })
   }
+  // handleSubmit = event =>{
+  //   event.preventDefault();
+  //   this.props.handleFormSubmit(this.state.inputSearch);
+  // }
   
   render() {
     return (
       <div className="search-bar">
-      <input type="text" placeholder="ex:dog" value={this.state.inputSearch} onChange={this.handleSearchBar}/>
-      {/* <button type="submit"><i class="fa fa-search" onChange={this.handleSearch}></i>submit</button> */}
+        {/* <form onSubmit={this.handleSubmit}> */}
+          <input type="text" placeholder="ex:dog" value={this.state.inputSearch} onChange={this.handleSearchBar}/>
+        {/* </form> */}
      </div>
     )
   }

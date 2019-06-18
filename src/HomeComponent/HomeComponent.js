@@ -4,6 +4,7 @@ import ButtonComponent from './ButtonComponent/ButtonComponent';
 import axios from 'axios';
 import './HomeComponent.css';
 import SearchComponent from './SearchComponent/SearchComponent';
+import { async } from 'q';
 
 
 
@@ -19,28 +20,31 @@ class HomeComponent extends Component {
   handleClick = () => {
     this.setState({ gif: this.state.list[Math.floor(Math.random() * this.state.list.length)]});
   }
-  
+
   componentDidMount() {
-    console.log('componentDidMount')
-    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=cheeseburgers`).then((response) => {
+    // console.log('componentDidMount')
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=cats`).then((response) => {
       console.log('response', response)
       const { data } = response.data;
       this.setState({ gif: data[Math.floor(Math.random() * data.length)], list: data });
     })
   }
-  // componentDidUpdate() {
-  //   console.log('componentDidUpdate')
-  // }
-  // componentWillUpdate() {
-  //   console.log('componentWillUpdate')
-  // }
-  // componentWillReceiveProps() {
-  //   console.log('componentWillReceiveProps')
-  // }
+  
   handleSearchBar = (input)=>{
     console.log('input', input)
-    this.setState({newInput:input})
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${input}`)
+    .then((response) => {
+      const { data } = response.data;
+      this.setState({ gif: data[Math.floor(Math.random() * data.length)], list: data });
+    })
   }
+
+  // handleTermChange = (term) => {
+  //   axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${term.replace(/\s/g, '+')}`)
+  //   .then((response)=> {
+  //       this.setState({ gifs: res.body.data }))
+  //   }}
+    
   render() {
     const newList = this.state.list.filter((gif) => {
         return gif !== this.state.gif  

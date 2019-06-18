@@ -21,22 +21,12 @@ class HomeComponent extends Component {
   }
   
   componentDidMount() {
-    console.log('componentDidMount')
     axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=cheeseburgers`).then((response) => {
-      console.log('response', response)
       const { data } = response.data;
       this.setState({ gif: data[Math.floor(Math.random() * data.length)], list: data });
     })
   }
-  // componentDidUpdate() {
-  //   console.log('componentDidUpdate')
-  // }
-  // componentWillUpdate() {
-  //   console.log('componentWillUpdate')
-  // }
-  // componentWillReceiveProps() {
-  //   console.log('componentWillReceiveProps')
-  // }
+  
   handleSearchBar = (input)=>{
     console.log('input', input)
     this.setState({newInput:input})

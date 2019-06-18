@@ -15,11 +15,8 @@ class SearchComponent extends Component {
     return (
       <div className="search-bar">
       <input type="text" placeholder="ex:dog" value={this.state.inputSearch} onChange={this.handleSearchBar}/>
-      {/* <button type="submit"><i class="fa fa-search" onChange={this.handleSearch}></i>submit</button> */}
      </div>
     )
   }
 }
 export default SearchComponent;
-
-{/* <input type="text" placeholder="" value={this.state.inputSearch} onChange={this.handleSearch} /> */}

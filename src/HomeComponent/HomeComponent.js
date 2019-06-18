@@ -31,11 +31,12 @@ class HomeComponent extends Component {
   }
   
   handleSearchBar = (input)=>{
-    // console.log('input', input)
-    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${this.state.newInput}`)
-    .then((response)=>{
-      this.setState({newInput:input})
-    })  
+    console.log('input', input)
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${input}`)
+    .then((response) => {
+      const { data } = response.data;
+      this.setState({ gif: data[Math.floor(Math.random() * data.length)], list: data });
+    })
   }
 
   // handleTermChange = (term) => {
